@@ -6,24 +6,24 @@ class Store:
         self.product_list.append(product)
 
     def remove_product(self, product):
-        '''
+        """
         Removes a product from store.
-        '''
+        """
         self.product_list.pop(product)
 
     def get_total_quantity(self) -> int:
-        '''
+        """
         Returns how many items are in the store in total.
-        '''
+        """
         total_quantity = 0
         for product in self.product_list:
             total_quantity += product.quantity
         return total_quantity
 
     def get_all_products(self) -> list:
-        '''
+        """
         Returns all products in the store that are active.
-        '''
+        """
         products = []
         for product in self.product_list:
             if product.active:
@@ -31,14 +31,21 @@ class Store:
         return products
 
     def order(self, shopping_list) -> float:
-        '''
+        """
         Gets a list of tuples, where each tuple has 2 items:
         Product (Product class) and quantity (int).
         Buys the products and returns the total price of the order.
-        '''
+        """
         total_price = 0
         for product, quantity in shopping_list:
-            total_price += product.price * quantity
-            product.quantity = product.quantity - quantity
+            if product.quantity >= quantity:
+                product.quantity = product.quantity - quantity
+                total_price += product.price * quantity
+            else:
+                print(
+                    f"Not enough {product.name} in store. Only adding {product.quantity} to your order."
+                )
+                total_price += product.price * product.quantity
+                product.quantity = 0
 
         return total_price

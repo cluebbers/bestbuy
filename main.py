@@ -67,10 +67,15 @@ def make_order():
         try:
             user_product = int(user_product)
             user_amount = int(user_amount)
-        except Exception as e:
-            print(f"Error: {e}")
+        except:
+            print(f"Only integers allowed!\n")
             continue
-        single_order = (products[user_product - 1], user_amount)
+        
+        try:
+            single_order = (products[user_product - 1], user_amount)
+        except:
+            print("Product not found.\n")
+            continue
         shopping_list.append(single_order)
         print("Product added to list!\n")
 
