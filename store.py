@@ -47,5 +47,6 @@ class Store:
                 )
                 total_price += product.price * product.quantity
                 product.quantity = 0
+                product.deactivate()
 
         return total_price
