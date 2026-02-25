@@ -32,9 +32,13 @@ class Product:
         """
         Setter function for quantity. If quantity reaches 0, deactivates the product.
         """
+        if quantity < 0:
+            raise ValueError("Quantity has to be positive!")
         self.quantity = quantity
         if quantity == 0:
             self.active = False
+        else:
+            self.active = True
 
     def is_active(self) -> bool:
         """
@@ -72,5 +76,5 @@ class Product:
         if quantity > self.quantity:
             raise ValueError(f"There are only {self.quantity} left!")
         else:
-            self.quantity = self.quantity - quantity
+            self.set_quantity(self.quantity - quantity)
         return self.price * quantity
