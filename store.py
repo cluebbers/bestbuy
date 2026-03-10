@@ -9,7 +9,7 @@ class Store:
         """
         Removes a product from store.
         """
-        self.product_list.pop(product)
+        self.product_list.remove(product)
 
     def get_total_quantity(self) -> int:
         """
