@@ -65,11 +65,11 @@ def make_order(best_buy):
             print("Amount must be a positive integer.\n")
             continue
 
-        try:
-            single_order = (products[user_product - 1], user_amount)
-        except:
+        if user_product < 1 or user_product > len(products):
             print("Product not found.\n")
             continue
+        
+        single_order = (products[user_product - 1], user_amount)
         shopping_list.append(single_order)
         print("Product added to list!\n")
 
