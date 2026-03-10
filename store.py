@@ -17,7 +17,7 @@ class Store:
         """
         total_quantity = 0
         for product in self.product_list:
-            total_quantity += product.quantity
+            total_quantity += product.get_quantity()
         return total_quantity
 
     def get_all_products(self) -> list:
@@ -26,7 +26,7 @@ class Store:
         """
         products = []
         for product in self.product_list:
-            if product.active:
+            if product.is_active():
                 products.append(product)
         return products
 
@@ -36,16 +36,17 @@ class Store:
         Product (Product class) and quantity (int).
         Buys the products and returns the total price of the order.
         """
-        total_price = 0
+        total_price = 0.0
         for product, quantity in shopping_list:
-            if product.quantity >= quantity:
-                product.set_quantity(product.quantity - quantity)
-                total_price += product.price * quantity
-            else:
+            purchase_quantity = quantity
+
+            if quantity >= product.get_quantity():
                 print(
-                    f"Not enough {product.name} in store. Only adding {product.quantity} to your order."
+                    f"Not enough {product.name} in store. Only adding {product.get_quantity} to your order."
                 )
-                total_price += product.price * product.quantity
-                product.set_quantity(0)
+                purchase_quantity = product.get_quantity()
+                
+                
+                total_price += product.buy(purchase_quantity)
 
         return total_price
