@@ -40,7 +40,7 @@ def make_order(best_buy):
     """
     Places an order
     """
-    list_products()
+    list_products(best_buy)
     products = best_buy.get_all_products()
     print("When you want to finish order, enter empty text.")
     shopping_list = []
