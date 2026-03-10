@@ -49,7 +49,7 @@ def make_order(best_buy):
         user_product = input("Which product # do you want? ")
         user_amount = input("What amount do you want? ")
 
-        if user_product == "" and user_amount == "":
+        if user_product == "" or user_amount == "":
             print("********")
             total_payment = best_buy.order(shopping_list=shopping_list)
             print(f"Order made! Total payment: ${total_payment}\n")
