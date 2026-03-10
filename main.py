@@ -50,6 +50,9 @@ def make_order(best_buy):
         user_amount = input("What amount do you want? ")
 
         if user_product == "" or user_amount == "":
+            if not shopping_list:
+                print("Order canceled.\n")
+                return
             print("********")
             total_payment = best_buy.order(shopping_list=shopping_list)
             print(f"Order made! Total payment: ${total_payment}\n")
