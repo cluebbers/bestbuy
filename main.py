@@ -53,12 +53,16 @@ def make_order(best_buy):
             print("********")
             total_payment = best_buy.order(shopping_list=shopping_list)
             print(f"Order made! Total payment: ${total_payment}\n")
-            break
+            return
         try:
             user_product = int(user_product)
             user_amount = int(user_amount)
-        except:
+        except ValueError:
             print(f"Only integers allowed!\n")
+            continue
+        
+        if user_amount <= 0:
+            print("Amount must be a positive integer.\n")
             continue
 
         try:
