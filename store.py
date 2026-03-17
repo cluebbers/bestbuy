@@ -39,14 +39,15 @@ class Store:
         total_price = 0.0
         for product, quantity in shopping_list:
             purchase_quantity = quantity
+            available_quantity = product.get_quantity()
 
-            if quantity >= product.get_quantity():
+            if quantity > available_quantity:
                 print(
-                    f"Not enough {product.name} in store. Only adding {product.get_quantity} to your order."
+                    f"Not enough {product.name} in store. Only adding {available_quantity} to your order."
                 )
-                purchase_quantity = product.get_quantity()
+                purchase_quantity = available_quantity
                 
                 
-                total_price += product.buy(purchase_quantity)
+            total_price += product.buy(purchase_quantity)
 
         return total_price
