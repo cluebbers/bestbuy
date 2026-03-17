@@ -37,17 +37,7 @@ class Store:
         Buys the products and returns the total price of the order.
         """
         total_price = 0.0
-        for product, quantity in shopping_list:
-            purchase_quantity = quantity
-            available_quantity = product.get_quantity()
-
-            if quantity > available_quantity:
-                print(
-                    f"Not enough {product.name} in store. Only adding {available_quantity} to your order."
-                )
-                purchase_quantity = available_quantity
-                
-                
-            total_price += product.buy(purchase_quantity)
+        for product, quantity in shopping_list:     
+            total_price += product.buy(quantity)
 
         return total_price

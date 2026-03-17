@@ -54,7 +54,11 @@ def make_order(best_buy):
                 print("Order canceled.\n")
                 return
             print("********")
-            total_payment = best_buy.order(shopping_list=shopping_list)
+            try:
+                total_payment = best_buy.order(shopping_list=shopping_list)
+            except ValueError as error:
+                print(f"{error}\n")
+                return
             print(f"Order made! Total payment: ${total_payment}\n")
             return
         try:
