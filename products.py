@@ -19,7 +19,7 @@ class Product:
         else:
             self.quantity = quantity
 
-        self.active = True
+        self.active = quantity > 0
 
     def get_quantity(self) -> int:
         """
@@ -35,10 +35,7 @@ class Product:
         if quantity < 0:
             raise ValueError("Quantity has to be positive!")
         self.quantity = quantity
-        if quantity == 0:
-            self.active = False
-        else:
-            self.active = True
+        self.active = quantity > 0
 
     def is_active(self) -> bool:
         """
@@ -51,7 +48,8 @@ class Product:
         """
         Activates the product.
         """
-        self.active = True
+        if self.quantity > 0:
+            self.active = True
 
     def deactivate(self):
         """
